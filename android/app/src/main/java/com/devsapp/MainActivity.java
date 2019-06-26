@@ -1,4 +1,4 @@
-package com.argus.devsapp;
+package com.devsapp;
 
 import com.facebook.react.ReactActivity;
 
