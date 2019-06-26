@@ -20,3 +20,5 @@ git::https://github.com/ederpbj/Devsapp.git
 >Instalar libs necessárias
 
     npm install --save react-navigation react-native-firebase redux react-redux redux-thunk
+
+    npm install --save firebase
