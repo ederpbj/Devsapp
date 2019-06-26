@@ -1,7 +1,8 @@
-package com.devsapp;
+package com.argus.devsapp;
 
 import android.app.Application;
 
+import com.devsapp.BuildConfig;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
