@@ -1,30 +1,28 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-import firebase from './src/FirebaseConnection'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+
+import Reducers from './src/Reducers';
+
+import Preload from './src/Preload';
+import Home from './src/Home';
+
+let store = createStore(Reducers, applyMiddleware(ReduxThunk));
+
+const Navegador = createStackNavigator({
+  Preload:Preload,
+  Home:Home
+	
+});
 
 export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        
-        <Text style={styles.welcome}>Boas vindas Devsapp!</Text>
-        
-      </View>
-    );
-  }
+	render(){
+		return(
+			<Provider store={store}>
+				<Navegador />
+			</Provider>
+		)
+	}
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  }
-  
-});
