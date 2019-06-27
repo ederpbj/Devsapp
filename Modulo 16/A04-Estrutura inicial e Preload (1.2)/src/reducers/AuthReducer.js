@@ -1,6 +1,7 @@
 const initialState ={
     email:'',
-    password:''
+    password:'',
+    status:0
 };
 
 const AuthReducer = (state = initialState, action) => {
