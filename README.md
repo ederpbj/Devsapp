@@ -22,3 +22,5 @@ git::https://github.com/ederpbj/Devsapp.git
     npm install --save react-navigation react-native-firebase redux react-redux redux-thunk
 
     npm install --save firebase
+
+    yarn add react-native-gesture-handler --save
