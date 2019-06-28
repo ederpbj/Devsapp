@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { checkLogin } from './actions/AuthActions';
 
@@ -20,8 +20,6 @@ export class Preload extends Component {
         this.directPages = this.directPages.bind(this);
     }
 
-    
-
     directPages(){
         //Navegação comum
         //this.props.navigation.navigate('Home');
@@ -30,33 +28,60 @@ export class Preload extends Component {
             case 1:
 
                 //Zera a posição vai para Conversas
-                this.props.navigation.dispatch(StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({
-                        routeName: "Conversas"
-                    })]
-                })
-
-            );
+                this.props.navigation.dispatch(NavigationActions.reset({
+                    index:0,
+                    actions:[
+                        NavigationActions.navigate({routeName:'Conversas'})
+                    ]
+                }));
                 break;
            
             case 2:
 
                 //Zera a posição vai para Home
-                this.props.navigation.dispatch(StackActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({
-                        routeName: "Home"
-                    })]
-                })
-
-            );
-
+                this.props.navigation.dispatch(NavigationActions.reset({
+					index:0,
+					actions:[
+						NavigationActions.navigate({routeName:'Home'})
+					]
+				}));
                 break;
         
             default:
                 break;
         }
+
+/* Forma de if
+
+        //Logado
+        if(this.props.status == 1){
+
+            //Navegação comum
+            //this.props.navigation.navigate('Home');
+
+            //Zera a posição para Home
+            this.props.navigation.dispatch(NavigationActions.reset({
+                index:0,
+                actions:[
+                    NavigationActions.navigate({routeName:'Conversas'})
+                ]
+            }));
+        }
+
+        //Não logado
+        if(this.props.status == 2){
+
+            //Navegação comum
+            //this.props.navigation.navigate('Home');
+
+            //Zera a posição para Home
+            this.props.navigation.dispatch(NavigationActions.reset({
+                index:0,
+                actions:[
+                    NavigationActions.navigate({routeName:'Home'})
+                ]
+            }));
+        } */
 
     }
 
