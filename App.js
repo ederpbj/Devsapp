@@ -9,13 +9,15 @@ import Reducers from './src/Reducers';
 import Preload from './src/Preload';
 import Home from './src/Home';
 import Conversas from './src/Conversas';
+import SignUp from './src/SignUp';
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const Navegador = createStackNavigator({
   Preload:Preload,
   Home:Home,
-  Conversas:Conversas
+  Conversas:Conversas,
+  SignUp:SignUp
 });
 
 
