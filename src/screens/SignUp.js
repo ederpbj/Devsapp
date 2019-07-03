@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { checkLogin, changeEmail, changePassword, changeName, signUpAction } from './actions/AuthActions';
+
+import { checkLogin, changeEmail, changePassword, changeName, signUpAction } from '../actions/AuthActions';
 
 export class SignUp extends Component {
 

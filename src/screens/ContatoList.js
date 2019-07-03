@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { getContactList } from './actions/ChatActions';
+import { getContactList } from '../actions/ChatActions';
 
 export class ContatoList extends Component {
 
@@ -21,16 +21,18 @@ export class ContatoList extends Component {
     render(){
         return (
             <View style={styles.container}>
-                <FlatList 
+            <Text>Teste</Text>
+         
+            
+            <FlatList 
                     data={this.props.contacts}
-                    renderItem={({item}) => {
-                            return (
+                    renderItem={({item}) => 
                                 <View>
                                     <Text>-> {item.name}</Text>
                                 </View>
-                            );
-                        }
                     }
+                    
+                    keyExtractor={(item, index)=>item.id}
                 />
             </View>
         );

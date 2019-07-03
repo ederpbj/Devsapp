@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { StackActions, NavigationActions }  from 'react-navigation';
 import { connect } from 'react-redux';
-import { SignOut } from './actions/AuthActions';
+import { SignOut } from '../actions/AuthActions';
 
 export class Config extends Component {
 
