@@ -13,25 +13,57 @@ export class ContatoList extends Component {
 
     constructor(props){
         super(props);
-        this.state = {}
+        //this.state = {}
+
+        //Teste
+        this.state = {
+            data: [
+              { id: "00", name: "Relâmpago McQueen" },
+              { id: "01", name: "Agente Tom Mate" },
+              { id: "02", name: "Doc Hudson" },
+              { id: "03", name: "Cruz Ramirez" }
+            ]
+          };
 
         this.props.getContactList();
     }
+/* 
+    <FlatList 
+        data={this.props.contacts}
+        renderItem={({item}) => 
+            <View>
+                <Text>-> {item.name}</Text>
+            </View>
+        }
+        
+        keyExtractor={(item, index)=>item.id}
+    /> 
+
+
+    //Outro modo de FlatList
+    <FlatList 
+        data={this.state.data}
+        renderItem={() => {
+            return <Text>xxxxxxx</Text>
+        }}
+        keyExtractor={(item, index)=>item.id}
+    />
+*/
 
     render(){
         return (
             <View style={styles.container}>
-            <Text>Teste</Text>
-         
+                <Text>Contatos</Text>
             
-            <FlatList 
+                
+                <FlatList 
                     data={this.props.contacts}
                     renderItem={({item}) => 
-                                <View>
-                                    <Text>-> {item.name}</Text>
-                                </View>
+                    <View>
+                        <Text>-> {item.name}</Text>
+                    </View>
                     }
-                    
+
                     keyExtractor={(item, index)=>item.id}
                 />
             </View>

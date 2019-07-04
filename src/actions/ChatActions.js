@@ -1,5 +1,6 @@
 import firebase from '../FirebaseConnection';
 
+//Pegar lista de usuparios do firebase
 export const getContactList = () => {
     return(dispatch) => {
         //firebase.database().ref('users').on('value', ()=>{ //em tempo real
