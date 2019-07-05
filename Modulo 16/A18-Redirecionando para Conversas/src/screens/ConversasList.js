@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 
 export class ConversasList extends Component {
 

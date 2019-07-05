@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 import { getContactList, createChat } from '../actions/ChatActions';
 import ContatoItem from '../components/ContatoList/ContatoItem'
 

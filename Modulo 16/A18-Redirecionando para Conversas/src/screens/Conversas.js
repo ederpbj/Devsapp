@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import { createBottomTabNavigator, createAppContainer  } from 'react-navigation';
 
 import ConversasStack from './ConversasStack';

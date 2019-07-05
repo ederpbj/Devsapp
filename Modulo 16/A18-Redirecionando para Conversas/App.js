@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 import { createStackNavigator, createAppContainer  } from 'react-navigation';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
+import { Provider } from './node_modules/react-redux';
+import { createStore, applyMiddleware } from './node_modules/redux';
+import ReduxThunk from './node_modules/redux-thunk';
 
 import Reducers from './src/Reducers';
 
