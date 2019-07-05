@@ -20,11 +20,6 @@ let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 const Navegador = createStackNavigator({
   Preload:Preload,
   Home:Home,
-  /* ConversasStack:{
-	  ConversasStack,
-		navigationOptions:{
-		tabBarLabel:'Conversas'
-  }}, */
   Conversas:Conversas,
   SignUp:SignUp,
   SignIn:SignIn

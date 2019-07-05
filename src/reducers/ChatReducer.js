@@ -6,6 +6,11 @@ const initialState ={
 
 const ChatReducer = (state = initialState, action) => {
     
+    if(action.type == 'setChatList'){
+        //alert('Retorno: '+action.payload.status);
+        return {...state, chats:action.payload.chats};
+    }
+    
     if(action.type == 'setContactList'){
         //alert('Retorno: '+action.payload.status);
         return {...state, contacts:action.payload.users};

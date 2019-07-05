@@ -1,4 +1,33 @@
 import firebase from '../FirebaseConnection';
+//Pega lista de conversas do usuário logado
+export const getChatList = ( userUid) => {
+    return(dispatch) => {
+        //uma unica vez, ideal, para este app
+        //firebase.database().ref('users').orderByChild('name').once('value').then((snapshot) =>{
+        
+        firebase.database().ref('users').child(userUid).child('chats').on('value', (snapshot)=>{
+            //limpa lista
+            let chats = [];
+
+            //pega as chaves dos chats
+            snapshot.forEach((childItem)=>{
+                chats.push({
+                    key:childItem.key
+                });
+            });
+
+            dispatch({
+                type:'setChatList',
+                payload:{
+                    chats:chats
+                }
+            });
+
+        });
+        
+    };
+};
+
 
 //Pegar lista de usuparios do firebase
 export const getContactList = ( userUid) => {
