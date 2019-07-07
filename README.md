@@ -24,3 +24,13 @@ git::https://github.com/ederpbj/Devsapp.git
     npm install --save firebase
 
     yarn add react-native-gesture-handler --save
+
+>Instalar  react-native-vector-icons
+
+    npm install react-native-vector-icons
+
+    react-native link react-native-vector-icons
+
+>Atualizar npm
+
+    npm install -g npm
