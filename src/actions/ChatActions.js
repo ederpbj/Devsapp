@@ -100,9 +100,10 @@ export const createChat = (userUid1, userUid2) =>{
 
         });
         
-        //Pegar nome do usuário 2, para exibir na tela
-        firebase.database().ref('users').child(userUid2).once('value').then((snapshot)=>{
+        //Pegar nome do usuário 1, para exibir na tela
+        firebase.database().ref('users').child(userUid1).once('value').then((snapshot)=>{
         
+            //Entra no db, seleciona usuário 2,
             firebase.database().ref('users').child(userUid2).child('chats')
                 .child(chatId).set({
                     id:chatId,
