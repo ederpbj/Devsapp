@@ -10,7 +10,7 @@ import {
     TextInput 
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveChat, sendMessage } from '../actions/ChatActions';
+import { setActiveChat } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem'
 
 export class ConversaInterna extends Component {
@@ -47,7 +47,6 @@ export class ConversaInterna extends Component {
         }
 
         this.voltar = this.voltar.bind(this);
-        this.sendMsg = this.sendMsg.bind(this);
     }
 
     //Setar os parametros no navigation, 
@@ -73,21 +72,6 @@ export class ConversaInterna extends Component {
         return true
     }
 
-    sendMsg(){
-        //alert(this.state.inputText);
-
-        let txt = this.state.inputText;
-
-        let state =  this.state;
-        state.inputText = '';
-        this.setState(state);
-
-        //alert(txt);
-
-        //Criar essa função no ChatActions
-        this.props.sendMessage(txt, this.props.uid, this.props.activeChat);
-    }
-
     //Verifica uid
     // <TextInput style={styles.sendInput} value={this.props.uid} />
     render(){
@@ -102,9 +86,9 @@ export class ConversaInterna extends Component {
                 />
 
                 <View style={styles.sendArea}>
-                    <TextInput style={styles.sendInput} value={this.state.inputText}  onChangeText={(inputText)=>this.setState({inputText})} />
+                    <TextInput style={styles.sendInput}  />
 
-                    <TouchableHighlight style={styles.sendButton} onPress={this.sendMsg}>
+                    <TouchableHighlight style={styles.sendButton}>
                         <Image
                             style={styles.sendImage}
                             source={require('../assets/images/send.png')}
@@ -148,13 +132,11 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        //Vem do reducer
         status:state.auth.status,
-        uid:state.auth.uid,
-        activeChat:state.chat.activeChat
+        uid:state.auth.uid
     };
 };
 
 //Constante de conexão (Preload)->Tela que vai abrir
-const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage } )(ConversaInterna);
+const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat } )(ConversaInterna);
 export default ConversaInternaConnect;
