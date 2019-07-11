@@ -136,7 +136,7 @@ export const sendMessage = (txt, author, activeChat) => {
         let msgId = firebase.database().ref('chats').child(activeChat).child('messages').push();
 
         msgId.set({
-            date:currentDate,
+            cdate:currentDate,
             m:txt,
             uid:author
         });
@@ -149,14 +149,14 @@ export const monitorChat = (activeChat) => {
     return (dispatch) => {
 
         //Olheiro para mensagens do firebase
-        firebase.database().ref('chats').child(activeChat).child('messages').orderByChild('date').on('value', (snapshot)=>{
+        firebase.database().ref('chats').child(activeChat).child('messages').orderByChild('cdate').on('value', (snapshot)=>{
             let arrayMsg = [];
 
             //Pega e preparar mensagens do firebase
             snapshot.forEach((childItem)=>{
                 arrayMsg.push({
                     key:childItem.key,
-                    data:childItem.val().date,
+                    cdate:childItem.val().cdate,
                     m:childItem.val().m,
                     uid:childItem.val().uid
                 });

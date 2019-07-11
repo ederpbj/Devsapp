@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem'
 
+
 export class ConversaInterna extends Component {
 
     //função com acesso ao navigation
@@ -83,6 +84,8 @@ export class ConversaInterna extends Component {
         return true
     }
 
+    
+
     sendMsg(){
         //alert(this.state.inputText);
 
@@ -104,9 +107,17 @@ export class ConversaInterna extends Component {
     //Prop temporário do stata, para teste
     //data={this.state.tmpMsg}
     render(){
+        //Teste
+        //const dateToFormat = '1976-04-19T12:59-0500';
+        const date = new Date();
+        
         return (
             <View style={styles.container}>
+
                 <FlatList 
+                    ref={(ref)=>{ this.chatArea = ref }}
+                    onContentSizeChange={()=> { this.chatArea.scrollToEnd({animated:true}) }}
+                    onLayout={()=>{this.chatArea.scrollToEnd({animated:true}) }}
                     style={styles.chatArea}
                     data={this.props.activeChatMessages}
                     renderItem={({item})=><MensagemItem data={item} me={this.props.uid} /> }

@@ -34,3 +34,7 @@ git::https://github.com/ederpbj/Devsapp.git
 >Atualizar npm
 
     npm install -g npm
+
+>Resolvendo porblema das dependências
+
+    rm -rf node_modules && npm install

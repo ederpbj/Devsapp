@@ -6,6 +6,7 @@ export default class MensagemItem extends Component {
     constructor(props){
         super(props);
 
+
         let bgColor = '#EEEEEE';
         let align = 'flex-start';
         let txtAlign = 'left';
@@ -23,13 +24,23 @@ export default class MensagemItem extends Component {
             txtAlign:txtAlign
         };
 
-    }
 
-    render(){
+    }
+/* 
+    <Moment parse="YYYY-MM-DD HH:mm">
+        {this.props.data.cdate}
+    </Moment> 
+*/
+
+
+render(){
+   
+
         return (
             <View style={[MensagemItemStyles.area, {alignSelf:this.state.align, backgroundColor:this.state.bgColor}]}>
                 <Text style={{textAlign:this.state.txtAlign}}>{this.props.data.m}</Text>
-                <Text style={MensagemItemStyles.dateTxt}>{this.props.data.date}</Text>
+                <Text style={MensagemItemStyles.dateTxt}>Data: {this.props.data.cdate}</Text>
+
             </View>
         );
     }
