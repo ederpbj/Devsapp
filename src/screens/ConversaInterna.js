@@ -70,12 +70,13 @@ export class ConversaInterna extends Component {
     componentWillMount(){
         BackHandler.removeEventListener('hardwareBackPress', this.voltar);
 
-        //Parar de monitorar o chat, (criar no action)
-        this.props.monitorChatOff(this.props.activeChat);
     }
-
+    
     //Função do proprio componente, limpa setActiveChat
     voltar(){
+        //Parar de monitorar o chat, (criar no action), REMANEJADO do componentWillMount
+        this.props.monitorChatOff(this.props.activeChat);
+
         //alert("Voltar!");
         this.props.setActiveChat('');
         this.props.navigation.goBack();
