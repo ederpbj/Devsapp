@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-nativ
 import { connect } from 'react-redux';
 
 import { checkLogin, changeEmail, changePassword, signInAction } from '../actions/AuthActions';
+import LoadingItem from '../components/LoadingItem'
 
 export class SignIn extends Component {
 
@@ -12,7 +13,9 @@ export class SignIn extends Component {
 
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            loading:false
+        }
 
     }
 
@@ -37,8 +40,13 @@ export class SignIn extends Component {
                 <TextInput style={styles.input} secureTextEntry={true} value={this.props.password} onChangeText={this.props.changePassword} />
                 
                 <Button title="Entrar" onPress={()=>{
-                    this.props.signInAction(this.props.email, this.props.password);
+                    this.setState({loading:true});
+                    this.props.signInAction(this.props.email, this.props.password, () => {
+                        this.setState({loading:false})
+                    });
                 }} />
+
+                <LoadingItem visible={this.state.loading} />
             </View>
         );
     }

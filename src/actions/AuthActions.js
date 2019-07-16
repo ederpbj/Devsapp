@@ -105,7 +105,7 @@ export const signUpAction = (name, email, password) => {
     }
 }
 
-export const signInAction = (email, password) => {
+export const signInAction = (email, password, callBack) => {
     return (dispatch) => {
         //Criando usuário
         firebase.auth().signInWithEmailAndPassword(email, password)
@@ -113,6 +113,8 @@ export const signInAction = (email, password) => {
 
                 //Pega uid
                 let uid = firebase.auth().currentUser.uid;
+
+                callBack();
 
                 //Salvar dispatch no reducer
                 dispatch({
@@ -143,6 +145,8 @@ export const signInAction = (email, password) => {
                     default:
                         break;
                 }
+
+                callBack();
             })
     }
 }

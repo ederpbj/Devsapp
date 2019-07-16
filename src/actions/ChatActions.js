@@ -39,7 +39,7 @@ export const setActiveChat = (chatId) => {
     };
 };
 
-//Pegar lista de usuparios do firebase
+//Pegar lista de usuários do firebase
 export const getContactList = ( userUid) => {
     return(dispatch) => {
         //firebase.database().ref('users').on('value', ()=>{ //em tempo real
@@ -134,6 +134,7 @@ export const sendMessage = (txt, author, activeChat) => {
         currentDate += cDate.getHours()+':'+cDate.getMinutes()+':'+cDate.getSeconds();
 
         let msgId = firebase.database().ref('chats').child(activeChat).child('messages').push();
+        
 
         msgId.set({
             cdate:currentDate,

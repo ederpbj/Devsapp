@@ -38,3 +38,7 @@ git::https://github.com/ederpbj/Devsapp.git
 >Resolvendo porblema das dependências
 
     rm -rf node_modules && npm install
+
+>Listar devices online
+
+    adb devices

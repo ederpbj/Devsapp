@@ -49,7 +49,7 @@ export default class MensagemItem extends Component {
 
         let newDate = mDate[1].split(':');
         //Corrigindo erro 0:0
-        newDate = ((newDate[0]<10 )?'0'+newDate[0]:newDate[0])+':'+((newDate[1]<10 )?'0'+newDate[1]:newDate[1]);
+        newDate = ((newDate[0]<10 )?'0'+newDate[1]:newDate[1])+':'+((newDate[1]<10 )?'0'+newDate[1]:newDate[1]);
 
         //Se não for hoje
         if(todayDate != mDate[0]){
