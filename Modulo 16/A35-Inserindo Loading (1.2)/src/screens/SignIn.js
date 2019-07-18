@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, Button, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 
-import { checkLogin, changeEmail, changePassword, changeName, signUpAction } from '../actions/AuthActions';
+import { checkLogin, changeEmail, changePassword, signInAction } from '../actions/AuthActions';
 import LoadingItem from '../components/LoadingItem'
 
-export class SignUp extends Component {
+export class SignIn extends Component {
 
     static navigationOptions = {
-        title:'Cadastrar'
+        title:'Login'
     }
 
     constructor(props){
@@ -27,23 +27,21 @@ export class SignUp extends Component {
         }
     }
 
-
     render(){
         return (
             <View style={styles.container}>
-                <Text>Digite seu nome</Text>
-                <TextInput style={styles.input} value={this.props.name} onChangeText={this.props.changeName} />
-                
+                <Text>Usuário logado: {this.props.uid}</Text>
+                <Text>Status de login: {this.props.status}</Text>
+
                 <Text>Digite seu e-mail</Text>
                 <TextInput style={styles.input} value={this.props.email} onChangeText={this.props.changeEmail} />
                 
                 <Text>Digite sua senha</Text>
                 <TextInput style={styles.input} secureTextEntry={true} value={this.props.password} onChangeText={this.props.changePassword} />
                 
-                <Button title="Cadastrar" onPress={()=>{
+                <Button title="Entrar" onPress={()=>{
                     this.setState({loading:true});
-                    this.props.signUpAction(this.props.name, this.props.email, this.props.password, 
-                    () => {
+                    this.props.signInAction(this.props.email, this.props.password, () => {
                         this.setState({loading:false})
                     });
                 }} />
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        name:state.auth.name,
+        uid:state.auth.uid,
         email:state.auth.email,
         password:state.auth.password,
         status:state.auth.status
@@ -80,5 +78,5 @@ const mapStateToProps = (state) => {
 };
 
 //Constante de conexão (Preload)->Tela que vai abrir
-const SignUpConnect = connect(mapStateToProps, { checkLogin, changeEmail, changePassword, changeName, signUpAction })(SignUp);
-export default SignUpConnect;
+const SignInConnect = connect(mapStateToProps, { checkLogin, changeEmail, changePassword, signInAction })(SignIn);
+export default SignInConnect;
