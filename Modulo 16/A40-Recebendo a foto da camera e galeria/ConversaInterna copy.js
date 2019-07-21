@@ -51,16 +51,84 @@ export class ConversaInterna extends Component {
         this.state = {
 
             inputText:'',
-            imageTmp:null
+            imageTmp:null,
+            //Teste
+            avatarSource: null,
+            imgSource: ''
+
 
         }
 
         this.voltar = this.voltar.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
-        this.chooseImage = this.chooseImage.bind(this);
+        //this.chooseImage = this.chooseImage.bind(this);
+
+        //Tete
+        //this.carregarFoto = this.carregarFoto.bind(this);
+        this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
         
     }
 
+   
+
+    //Teste
+    selectPhotoTapped(){
+        
+        /* const options = {
+            quality: 1.0,
+            maxWidth: 500,
+            maxHeight: 500,
+            storageOptions: {
+                skipBackup:true,
+            },
+        } */
+
+        ImagePicker.showImagePicker(options, response => {
+            alert('Response = ', response)
+
+            if(response.didCancel){
+                alert('Usuário cancelou photo picker')
+            } else if (response.error){
+                alert('ImagePicker Error: ', response.error);
+            } else if(response.customButton){
+                alert('Usuário apertou botão custom', response.customButton)
+            }else{
+                const source = { uri: response.uri }
+
+                this.setState({
+                    avatarSource: source,
+                })
+            }
+        })
+    }
+
+
+    /* carregarFoto(){
+
+		//Teste
+		var options = {
+			title: 'Selecione uma foto',
+			customButtons: [
+			  { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
+			],
+			storageOptions: {
+			  skipBackup: true,
+			  path: 'images',
+			},
+		  };
+		//<
+
+		//Pega imagem da galeria
+		ImagePicker.showImagePicker(options, (r) => {
+			if(r.uri){
+				
+				let state = this.state;
+				state.formAvatar = {uri:r.uri};
+				this.setState(state);
+			}
+		}); 
+	} */
+    
 
     //Setar os parametros no navigation, 
     componentDidMount(){
@@ -158,7 +226,7 @@ export class ConversaInterna extends Component {
                 />
 
                 <View style={styles.imageTmp}>
-                    <Image source={this.state.imageTmp} style={styles.imageTmp.Image} />
+                    <Image source={this.state.imageTmp} style={style.imageTmp.Image} />
                 </View>
 
                 <View style={styles.sendArea}>

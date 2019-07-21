@@ -9,23 +9,14 @@ import {
     Image,
     KeyboardAvoidingView,
     Platform,
-    TextInput
-    //Teste
-    /* AppRegistry,
-    PixelRatio,
-    TouchableOpacity */
-    
+    TextInput 
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem'
-import ImagePicker from 'react-native-image-picker';
-
 
 
 export class ConversaInterna extends Component {
-
-     
 
     //função com acesso ao navigation
     static navigationOptions = ({navigation}) => ({
@@ -49,18 +40,21 @@ export class ConversaInterna extends Component {
     constructor(props){
         super(props);
         this.state = {
-
-            inputText:'',
-            imageTmp:null
-
+            //Para teste, pode excluir
+            /* tmpMsg:[
+                {key:1, date:'2019-07-08 18:00', uid:123, m:'Oi, tudo bem?'},
+                {key:2, date:'2019-07-08 18:01', uid:'qiq9sill2oRpdqMEDTo2drEXZyl2', m:'Tudo, e você'},
+                {key:3, date:'2019-07-08 18:02', uid:123, m:'Ok, legal'},
+                {key:4, date:'2019-07-08 18:03', uid:'qiq9sill2oRpdqMEDTo2drEXZyl2', m:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'},
+                {key:5, date:'2019-07-08 18:04', uid:'qiq9sill2oRpdqMEDTo2drEXZyl2', m:'Então xau!'}
+            ], */
+            
+            inputText:''
         }
 
         this.voltar = this.voltar.bind(this);
         this.sendMsg = this.sendMsg.bind(this);
-        this.chooseImage = this.chooseImage.bind(this);
-        
     }
-
 
     //Setar os parametros no navigation, 
     componentDidMount(){
@@ -93,25 +87,7 @@ export class ConversaInterna extends Component {
         return true
     }
 
-    chooseImage(){
-        const options = {
-            title: 'Select Image',
-            storageOptions: {
-              skipBackup: true,
-              path: 'images'
-            }
-          };
-
-        //alert("Adicionar imagem!")
-        ImagePicker.showImagePicker(options, (r)=>{
-            if(r.uri){
-                let img = {uri:r.uri};
-                let state = this.state;
-                state.imageTmp = img;
-                this.setState(state);
-            }
-        });
-    }
+    
 
     sendMsg(){
         //alert(this.state.inputText);
@@ -127,8 +103,6 @@ export class ConversaInterna extends Component {
         //Criar essa função no ChatActions
         this.props.sendMessage('text', txt, this.props.uid, this.props.activeChat);
     }
-
-    
 
     //Verifica uid
     // <TextInput style={styles.sendInput} value={this.props.uid} />
@@ -157,21 +131,13 @@ export class ConversaInterna extends Component {
                     keyExtractor={(item, index)=>item.id}
                 />
 
-                <View style={styles.imageTmp}>
-                    <Image source={this.state.imageTmp} style={styles.imageTmp.Image} />
-                </View>
-
                 <View style={styles.sendArea}>
-                    <TouchableHighlight style={styles.imageButton} onPress={this.chooseImage}>
-                        <Image style={styles.imageBtnImage} source={require('../assets/images/picture.png')} />
-                    </TouchableHighlight>
-
                     <TextInput style={styles.sendInput} value={this.state.inputText}  onChangeText={(inputText)=>this.setState({inputText})} />
 
                     <TouchableHighlight style={styles.sendButton} onPress={this.sendMsg}>
                         <Image
                             style={styles.sendImage}
-                            source={require('../assets/images/send-button.png')}
+                            source={require('../assets/images/send.png')}
                         />
                     </TouchableHighlight>
                 </View>
@@ -204,24 +170,6 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
-    imageButton:{
-        width:50,
-        height:50,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    imageBtnImage:{
-        width:50,
-        height:50
-    },
-    imageTmp:{
-        height:100,
-        backgroundColor:'#DDDDDD'
-    },
-    image:{
-        width:100,
-        height:100
-    }, 
     sendImage:{
         width:40,
         height:40

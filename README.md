@@ -42,3 +42,48 @@ git::https://github.com/ederpbj/Devsapp.git
 >Listar devices online
 
     adb devices
+
+>Upload de imagens A39
+
+    npm install react-native-image-picker@latest --save
+
+>Alteração no android/build.gradle
+
+    dependencies {
+            classpath("com.android.tools.build:gradle:3.4.+")
+
+>Permissões do manifest
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+>Linkar
+
+    react-native link
+
+>Limpar cach
+
+    cd android
+    
+        gradlew clean
+
+>Desinstalar uma biblioteca
+
+    npm uninstall  react-native-image-picker
+
+>Confirurando
+
+colar no gandle.properties
+
+android.useAndroidX=true
+android.enableJetifier=true
+
+>Instalar para corrigir bug, datePicker
+
+A39-Adicionando icone de foto
+
+    npm audit fix
+    npm i --save-dev jetifier
+    npx jetify
