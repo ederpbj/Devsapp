@@ -210,6 +210,10 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    sendImage:{
+        width:40,
+        height:40
+    },
     imageBtnImage:{
         width:50,
         height:50
@@ -218,14 +222,12 @@ const styles = StyleSheet.create({
         height:100,
         backgroundColor:'#DDDDDD'
     },
-    image:{
+    imageTmpImage:{
         width:100,
         height:100
-    }, 
-    sendImage:{
-        width:40,
-        height:40
     }
+    
+    
 });
 
 const mapStateToProps = (state) => {
