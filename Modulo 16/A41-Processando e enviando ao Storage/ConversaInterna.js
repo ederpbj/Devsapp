@@ -54,8 +54,7 @@ export class ConversaInterna extends Component {
         this.state = {
 
             inputText:'',
-            //imageTmp:null
-            pct:0
+            imageTmp:null
 
         }
 
@@ -125,29 +124,15 @@ export class ConversaInterna extends Component {
                         return RNFetchBlob.polyfill.Blob.build(data, {type:'image/jpeg;BASE64'});
                     })
                     .then((blob)=>{
-                        //alert("Recebeu o BLOB");
+                        alert("Recebeu o BLOB");
                         //Salva no firebase
-                        this.props.sendImage(
-                            blob, 
-                            (snapshot) => {
-                                let pct = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+                        this.props.sendImage(blob, (imgName)=>{
+                            alert("Imagem salva com sucesso!"+imgName);
 
-                                let state = this.state;
-                                state.pct = pct;
-                                this.setState(state);
-                            },
-                            (imgName)=>{
-                                //alert("Imagem salva com sucesso!"+imgName);
-                                
-                                //Barra some quando upload terminar
-                                let state = this.state;
-                                state.pct = 0;
-                                this.setState(state);
-                                
-                                //Enviar uid da foto, para nó messages
-                                this.props.sendMessage('image', imgName, this.props.uid, this.props.activeChat);
-                        });
-                    });
+                            //Enviar uid da foto, para nó messages
+                            this.props.sendMessage('image', imgName, this.props.uid, this.props.activeChat);
+                        })
+                    })
             }
         });
     }
@@ -174,12 +159,6 @@ export class ConversaInterna extends Component {
 
     //Prop temporário do stata, para teste
     //data={this.state.tmpMsg}
-    //Removido
-    /* 
-    <View style={styles.imageTmp}>
-        <Image source={this.state.imageTmp} style={styles.imageTmpImage} />
-    </View> 
-    */
     render(){
         //Teste
         //const dateToFormat = '1976-04-19T12:59-0500';
@@ -201,11 +180,10 @@ export class ConversaInterna extends Component {
 
                     keyExtractor={(item, index)=>item.id}
                 />
-                {this.state.pct > 0 && 
-                    <View style={styles.imageTmp}>
-                        <View style={[ {width:this.state.pct+'%'} , styles.imageTmpBar]}></View>
-                    </View>
-                }
+
+                <View style={styles.imageTmp}>
+                    <Image source={this.state.imageTmp} style={styles.imageTmpImage} />
+                </View>
 
                 <View style={styles.sendArea}>
                     <TouchableHighlight style={styles.imageButton} onPress={this.chooseImage}>
@@ -265,15 +243,12 @@ const styles = StyleSheet.create({
         height:50
     },
     imageTmp:{
-        height:10
+        height:100,
+        backgroundColor:'#DDDDDD'
     },
-    /* imageTmpImage:{
+    imageTmpImage:{
         width:100,
         height:100
-    }, */
-    imageTmpBar:{
-        height:10,
-        backgroundColor:'#FF0000'
     }
     
     

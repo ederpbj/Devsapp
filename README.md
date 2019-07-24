@@ -87,3 +87,17 @@ A39-Adicionando icone de foto
     npm audit fix
     npm i --save-dev jetifier
     npx jetify
+
+>A40-Processando e enviando ao Storage
+
+    npm install react-native-fetch-blob --save
+    react-native link
+    npx jetify
+
+>Corrige erros de versão e do blob
+
+    https://github.com/ozalexo/ChronoMint-RN/blob/209e5e9a23ef6e6a237df6cd4c42658d8b3d6f71/docs/PATCHPACKAGE.md
+
+>Linkar
+
+    react-native link

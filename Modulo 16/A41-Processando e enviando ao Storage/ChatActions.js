@@ -126,33 +126,20 @@ export const createChat = (userUid1, userUid2) =>{
     }
 };
 
-export const sendImage = (blob, progressCallback, successCallback) => {
+export const sendImage = (blob, callback) => {
     return (dispatch) => {
         //Cria um key imaginário
         let tmpKey = firebase.database().ref('chats').push().key;
 
-        //alert("Key gerado "+tmpKey);
+        alert("Key gerado "+tmpKey);
 
         //Usa key imaginário para salvar no firebase, no nó image
         let fbimage = firebase.storage().ref().child('images').child(tmpKey);
 
-        //alert("Começando upload...");
+        alert("Começando upload...");
         
         fbimage.put(blob, {contentType:'image/jpeg'})
-        //Olheiro
-            .on('state_changed', 
-
-            progressCallback,
-
-            (error)=>{
-                alert(error.code);
-            },
-            ()=>{
-                successCallback( tmpKey );
-            })
-        
         //Se der tudo certo
-            /* Não precisa 
             .then(()=>{
                 alert("Upload finalizado!");       
                 callback(tmpKey);
@@ -161,7 +148,6 @@ export const sendImage = (blob, progressCallback, successCallback) => {
             .catch((error)=>{
                 alert(error.code);
             });
-             */
     }
 }
 
